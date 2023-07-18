@@ -1,0 +1,34 @@
+{
+    "users": [
+        {
+            "_email": "ali.hezarpisheh@gmail.com",
+            "_hashed_password": "$2b$12$UJ9EnzPabmOZYRlcphuqdO24RWOJhOPiuJDlL52my4DZuRqm0hJra",
+            "_username": "alihzp",
+            "is_premium": false
+        },
+        {
+            "_email": "radinhojati@yahoo.com",
+            "_hashed_password": "$2b$12$UJ9EnzPabmOZYRlcphuqdO6eK5eucSNfQpBQxjh55ALf73.o1a6te",
+            "_username": "radinhojati",
+            "is_premium": false
+        },
+        {
+            "_email": "arsamyz@outlook.com",
+            "_hashed_password": "$2b$12$UJ9EnzPabmOZYRlcphuqdOVjYouVlrNT/bDTxCaVCXoF7S1NwprGW",
+            "_username": "arsamyz",
+            "is_premium": false
+        },
+        {
+            "_email": "bidmeshki@icloud.com",
+            "_hashed_password": "$2b$12$UJ9EnzPabmOZYRlcphuqdO0UdRg.a.JVDWLtNpB.SDru8f6qoX/0q",
+            "_username": "pouyabid",
+            "is_premium": false
+        },
+        {
+            "_email": "ksaflhsjh@kjahfsd.com",
+            "_hashed_password": "$2b$12$UJ9EnzPabmOZYRlcphuqdOSDeUR1BcISbu4tYIkKsRaab1moo2LAm",
+            "_username": "ashdalsd",
+            "is_premium": false
+        }
+    ]
+}

@@ -1,0 +1,5 @@
+from .add_command import handle_add_command
+from .remove_command import handle_remove_command
+from .search_command import handle_search_command
+from .change_index_command import handle_change_index
+from .count_command import handle_count_command

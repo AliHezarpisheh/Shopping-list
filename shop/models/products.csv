@@ -1,0 +1,20 @@
+id,name,price,category,quantity
+1,Laptop 15.6,"$999","Laptops",50
+2,Gaming Mouse,"$59","Computer Accessories",100
+3,External Hard Drive 1TB,"$79","Storage",75
+4,Wireless Keyboard,"$49","Computer Accessories",200
+5,Desktop PC,"$1499","Desktops",25
+6,Monitor 24 inch,"$199","Monitors",150
+7,Printer,"$129","Printers",80
+8,Gaming Headset,"$79","Computer Accessories",120
+9,SSD 500GB,"$89","Storage",100
+10,Wi-Fi Router,"$59","Networking",50
+11,Bluetooth Speaker,"$69","Audio Accessories",150
+12,USB Flash Drive 32GB,"$19","Storage",200
+13,Wireless Mouse,"$29","Computer Accessories",250
+14,Tablet 10.1 inch,"$299","Tablets",50
+15,Inkjet Printer,"$149","Printers",60
+16,USB-C Hub,"$49","Computer Accessories",100
+17,Portable Hard Drive 2TB,"$129","Storage",80
+18,Webcam,"$59","Computer Accessories",100
+19,Wireless Earphones,"$99","Audio Accessories",120
