@@ -1,51 +1,44 @@
+from shop.utils.basket import Basket
 from shop.utils.funcs import (
-    remove_items,
-    title_and_strip_items,
+    title_and_strip_names,
     show_divider,
     clear_screen,
     guide_message,
-    show_basket
 )
-from shop.helpers.exceptions import ItemDoesNotExist
-from shop.helpers.type_hints import (
-    Basket,
-    ProductNames
-)
+from shop.helpers.exceptions import ItemDoesNotExistError
 from config.log_config import config_logging
 
 logger = config_logging()
 
 
-def handle_remove_command(basket: Basket) -> Basket:
-    """Handle the 'remove' command by allowing the user to select and remove products from the shopping basket.
-
-    Args:
-        basket (Basket): The current shopping basket.
-
-    Returns:
-        Basket: The updated shopping basket after removing the selected products.
-    """
+def handle_remove_command(basket: Basket):
     clear_screen()
-    items, _ = show_basket(basket)
+
+    items, _ = basket.show()
     print(items)
     print(show_divider())
 
     items_to_delete = input(
-        "Enter the name(s) which represents the product(s) you're considering to remove: ").split(",")
+        "Enter the name(s) which represents the product(s) you're considering to remove: "
+    ).split(",")
 
     try:
-        items_to_delete: ProductNames = title_and_strip_items(items_to_delete)
+        items_to_delete = title_and_strip_names(items_to_delete)
     except TypeError:
-        logger.error("Data type of the arguments were not correct. check title_and_strip_items function.")
-        print("Please try again entering the items. Be sure that you're entering valid items. Call the administrator if the issue is not solved.")
+        logger.error(
+            "Data type of the arguments were not correct. check title_and_strip_names function."
+        )
+        print(
+            "Please try again entering the items. Be sure that you're entering valid items. Call the administrator if the issue is not solved."
+        )
 
     if items_to_delete[0] == "Back":
         clear_screen()
     else:
         clear_screen()
         try:
-            basket = remove_items(basket, items_to_delete)
-        except ItemDoesNotExist as error:
+            basket.remove_items(items_to_delete)
+        except ItemDoesNotExistError as error:
             print(error, "Type and Enter show for seeing your basket.")
         except Exception as error:
             logger.critical(error)
@@ -53,5 +46,3 @@ def handle_remove_command(basket: Basket) -> Basket:
         print(guide_message())
 
     print(show_divider())
-
-    return basket

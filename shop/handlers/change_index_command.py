@@ -1,31 +1,23 @@
+from typing import NoReturn
+from shop.utils.basket import Basket
 from shop.utils.funcs import (
-    change_index,
     show_divider,
     clear_screen,
     guide_message,
-    show_basket
 )
 from shop.helpers.exceptions import (
-    ItemDoesNotExist,
+    ItemDoesNotExistError,
     WrongOrderError
 )
-from shop.helpers.type_hints import Basket
 from config.log_config import config_logging
 
 logger = config_logging()
 
 
-def handle_change_index(basket: Basket) -> Basket:
-    """Handle the change index command by allowing the user to move an item within the shopping basket.
-
-    Args:
-        basket (Basket): The current shopping basket.
-
-    Returns:
-        Basket: The updated shopping basket after moving the item.
-    """
+def handle_change_index(basket: Basket) -> NoReturn:
     clear_screen()
-    items, _ = show_basket(basket)
+
+    items, _ = basket.show()
     print(items)
     print(show_divider())
 
@@ -46,8 +38,8 @@ def handle_change_index(basket: Basket) -> Basket:
             try:
                 int_new_index = int(str_new_index)
                 try:
-                    basket = change_index(basket, item_name, int_new_index)
-                except ItemDoesNotExist as error:
+                    basket.change_index(item_name, int_new_index)
+                except ItemDoesNotExistError as error:
                     print(error)
                 except WrongOrderError as error:
                     print(error, "Please try again.")
@@ -58,5 +50,3 @@ def handle_change_index(basket: Basket) -> Basket:
             print(guide_message())
 
     print(show_divider())
-
-    return basket

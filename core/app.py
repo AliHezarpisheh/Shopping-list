@@ -1,20 +1,13 @@
 from typing import NoReturn
+from shop.models.products import Product
+from shop.utils.basket import Basket
 from shop.utils.funcs import (
     show_help,
-    show_products,
-    show_basket,
     show_divider,
     clear_screen,
 )
-from shop.models import (
-    get_all_products
-)
-from shop.utils.consts import (
-    ASSIGN_COMMANDS,
-    NO_ASSIGN_COMMANDS
-)
+from shop import COMMANDS
 from auth.utils.consts import USER_INTENT
-from shop.helpers.type_hints import Basket
 from config.log_config import config_logging
 
 logger = config_logging()
@@ -25,9 +18,9 @@ def main() -> NoReturn:
     clear_screen()
     logger.debug("App has been started.")
     print("Welcome to TechWorld, your one-stop shop for all your tech device needs!")
+    print(show_divider())
 
     # authentication
-    print(show_divider())
     while True:
         user_intent = input("Sign up/Sign in: ").lower()
         clear_screen()
@@ -38,29 +31,25 @@ def main() -> NoReturn:
             break
 
     # Shop
-    basket: Basket = list()
+    basket = Basket()
     print(show_help())
 
     while True:
         action = input(f"({user.username}) Which action are you considering: ")
         action = action.lower()
 
-        if action in ASSIGN_COMMANDS:
-            exec_action = ASSIGN_COMMANDS[action]
-            basket = exec_action(basket)
-
-        elif action in NO_ASSIGN_COMMANDS:
-            exec_action = NO_ASSIGN_COMMANDS[action]
+        if action in COMMANDS:
+            exec_action = COMMANDS[action]
             exec_action(basket)
 
         elif action == "products":
             clear_screen()
-            all_products = get_all_products()
-            show_products(all_products)
+            Product.show_all()
+            print(show_divider())
 
         elif action == "show":
             clear_screen()
-            items, final_price = show_basket(basket)
+            items, final_price = basket.show()
             print(items)
             print("\nHere is your final price after tax: {:.2f}$".format(final_price))
             print(show_divider())
@@ -71,6 +60,7 @@ def main() -> NoReturn:
 
         elif action == "quit":
             clear_screen()
+            items, final_price = basket.show()
             print(items)
             print("\nHere is your final price after tax: {:.2f}$".format(final_price))
             break
